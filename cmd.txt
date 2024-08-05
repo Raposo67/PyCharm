@@ -1,0 +1,11 @@
+PYTHON VENV
+sudo apt install python3-venv
+python3 -m venv "nome que voce quer"
+cd /"nome que voce escolheu"/bin/activate
+
+PYCHARM
+wget https://download.jetbrains.com/python/pycharm-professional-2024.1.4-aarch64.tar.gz
+ tar -xvzf pycharm-professional-2024.1.4-aarch64.tar.gz
+ cd pycharm-2024.1.4/bin
+ aqui voce deve ta na parte visual da maquina, e nao no terminal
+ ./pycharm
