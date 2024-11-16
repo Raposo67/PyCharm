@@ -1,122 +1,156 @@
 #!/bin/bash
-# BOA SORTE PRA QUEM VAI EXAMINAR ESSES CODIGOS KKKKKKK
-sudo apt update
-clear
-echo "		[+] INSTALAÇÃO PYTHON [+]"
 
+################### INSTALAÇÃO ###################
+#apt update
+clear
+#sleep 3
+echo -e """		     ,@@@@@@@@@@@@@@@@&
+                  *@@@@&@@@@@@@@@@@@@@@@@@
+                  @@@     @@@@@@@@@@@@@@@@@
+                  @@@@@(@@@@@@@@@@@@@@@@@@@
+                  @@@@@@@@@@@@@@@@@@@@@@@@@
+           %&@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ,@@@@@%.
+       @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ *@@@@@@@@@
+     .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ *@@@@@@@@@@
+     @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@% @@@@@@@@@@@@
+    .@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@  @@@@@@@@@@@@@.
+    (@@@@@@@@@@@@@@@%                  .@@@@@@@@@@@@@@@@(
+    .@@@@@@@@@@@@@  @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@.
+     @@@@@@@@@@@% @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+      @@@@@@@@@@, @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+       @@@@@@@@@, @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+          *#%%%%. @@@@@@@@@@@@%%%%%%%%%%%%%%%%%%%#/
+                  @@@@@@@@@@@@@@@@@@@@@@@@@
+                  @@@@@@@@@@@@@@@@@@%,%@@@@
+                  @@@@@@@@@@@@@@@@@     @@@
+                   &@@@@@@@@@@@@@@@@@@@@@&
+                       #@@@@@@@@@@@@@# """
+echo ""
+echo "  	        [+] INSTALAÇÃO PYTHON [+]"
+echo ""
 echo "[1] PYCHARM"
 echo "[2] PYTHON VENV"
-echo "[3] TODOS"
-read -p ">> " resposta
-if [ $resposta = 1 ];then
+echo "[00] EXIT"
+echo ""
+read -p "[+] >> " resposta
+##################################################
+
+################## PYCHARM #######################
+if [ $resposta == 1 ];then
  clear
- wget https://download.jetbrains.com/python/pycharm-professional-2024.1.4-aarch64.tar.gz
- tar -xvzf pycharm-professional-2024.1.4-aarch64.tar.gz
- if [ "$?" == 1 ];then
-  tar -xvzf 'pycharm-professional-2024.1.4-aarch64.tar.gz'
- fi
- if [ "$?" == 1 ];then
-  tar -xvzf pycharm-professional-2024.1.4-aarch64.tar.gz.1
- fi
- clear
- echo "INICIANDO O PYCHARM..."
- sleep 3
- echo "CERTIFIQUE-SE DE ESTAR NO AMBIEMTE GUI DO SEU LINUX"
- echo -n "$(pwd)/pycharm-2024.1.4/bin/pycharm.sh" > pycharm 
- chmod 777 pycharm
- mv pycharm /bin/
- if [ "$?" == 1 ];then
-  pycharm-2024.1.4/bin/pycharm.sh
-  echo """ APÓS A INCIAÇÃO DO PYCHARM RECOMENDAMOS QUE VC DE UMA
- OLHADA NO REPOSITORIO E SSGUIR OS RESTOS DAS INSTRUÇÕES BASICAS.
- ~O CAMINHO CURTO NEM SEMPRE É O MAIS PRECISO, MAS O CAMINHO LONGO
- TRAZ MAIS EXPERIENCIAS!~
- https://github.com/Raposo67/python
- PARA ABRIR O PYCHARM USE O COMANDO pycharm"""
+ apt install wget
+ apt install python3
+ ###################
+ if [ "$?" -gt  0 ]; then
+  echo "ocorreu um erro algum erro"
+  exit
  else
-  pycharm-2024.1.4/bin/pycharm.sh
-  echo """ APÓS A INCIAÇÃO DO PYCHARM RECOMENDAMOS QUE VC DE UMA
- OLHADA NO REPOSITORIO E SSGUIR OS RESTOS DAS INSTRUÇÕES BASICAS.
- ~O CAMINHO CURTO NEM SEMPRE É O MAIS PRECISO, MAS O CAMINHO LONGO
- TRAZ MAIS EXPERIENCIAS!~
- https://github.com/Raposo67/python
- PARA ABRIR O PYCHARM USE O COMANDO `pycharm` """
+  clear
+  sleep 3
+  echo "OK"
  fi
+ ###################
  sleep 2
- echo """ APÓS A INCIAÇÃO DO PYCHARM RECOMENDAMOS QUE VC DE UMA
- OLHADA NO REPOSITORIO E SSGUIR OS RESTOS DAS INSTRUÇÕES BASICAS.
- ~O CAMINHO CURTO NEM SEMPRE É O MAIS PRECISO, MAS O CAMINHO LONGO
- TRAZ MAIS EXPERIENCIAS!~
- https://github.com/Raposo67/python
- PARA ABRIR O PYCHARM USE O COMANDO pycharm"""
+ wget -O pycharm.tar.gz https://download.jetbrains.com/python/pycharm-professional-2024.3-aarch64.tar.gz
+
+
+ sleep 2
+ ###################
+ if [ "$?" -gt  0 ]; then
+  echo "ocorreu um erro algum erro"
+  exit
+ else
+  sleep 2
+  echo "OK"
+ fi
+ ###################
+
+ tar -xvzf pycharm.tar.gz
+
+ ###################
+ if [ "$?" -gt  0 ]; then
+  echo "ocorreu um erro algum erro"
+  exit
+ else
+  sleep 2
+  echo "OK"
+ fi
+ ###################
+ clear
+ sleep 2
+ echo -n "$(pwd)/pycharm-2024.3/bin/pycharm.sh" > pycharm && chmod 777 pycharm && cp pycharm /bin/
+ if [ "$?" -gt  0 ]; then
+  echo "ocorreu um erro algum erro"
+  exit
+ else
+  clear
+  sleep 2
+  echo "[+] PYCHARM INSTALADO COM SUCESSO [+]"
+  echo ""
+  echo "[+] pycharm		inicie o pycharm"
+  echo ""
+  echo "É PRECISO QUE VOCÊ ESTEJA NO AMBIENTE VISUAL DO LINUX, ANTES DE EXECULTAR O COMANDO"
+ fi
+########################################################
+
+################### PYTHON VENV ########################
+elif [ $resposta == 2 ]; then
+ apt update
+
+ if [ "$?" -gt  0 ]; then
+  echo "ocorreu um erro algum erro"
+  exit
+ else
+  clear
+  sleep 2
+  echo "OK"
+ fi
+
+ apt install -y python3-venv
+ if [ "$?" -gt  0 ]; then
+  echo "ocorreu um erro algum erro"
+  exit
+ else
+  clear
+  sleep 2
+  echo "OK"
+ fi
+ echo "		[+] PYTHON VENV [+]"
+ echo ""
+ read -p "NOME DO USUARIO: " usuario
+ sleep 2
+ python3 -m venv $usuario
+ if [ "$?" -gt  0 ]; then
+  echo "ocorreu um erro algum erro"
+  exit
+ else
+  clear
+  sleep 2
+  echo "OK"
+ fi
+ echo -e "#\!/bin/bash\nsource $(pwd)/$usuario/bin/activate" > $usuario.sh
+ chmod 777 $usuario.sh
+ mv $usuario /bin/
+ if [ "$?" -gt  0 ]; then
+  echo "ocorreu um erro algum erro"
+  exit
+ else
+  clear
+  sleep 2
+  echo "	   [+] PYTHON VENV INSTALADO [+]"
+  echo ""
+  echo "[+] $usuario         entra no usuario"
+  echo "[+] deactivate       sai do usuario"
+ fi
+########################################################
+
+###################### EXIT #############################
+
+elif [ $resposta == "00" ]; then
+ exit
+else
+ echo "resposta invalida!"
+ exit 0
 fi
 
-if [ $resposta == "2" ];then
- clear
- sudo apt install -y python3-venv
- read -p "NOME DO USUARIO: " usuario
- python3 -m venv $usuario
- if [ "$?" == 1 ];then
-  python2 -m venv $usuario
- fi
- if [ "$?" == 1];then
-  python -m venv $usuario
- fi
- clear
- echo "[+] PYTHON VENV INSTALADO [+]"
-fi
-if [ $resposta == "3" ];then
-clear
- sudo apt install -y python3-venv
- read -p "NOME DO USUARIO: " usuario
- python3 -m venv $usuario
- if [ "$?" == 1 ];then                                                                                                    python2 -m venv $usuario
- fi
- if [ "$?" == 1];then
-  python -m venv $usuario
- fi
- clear
- echo "[+] PYTHON VENV INSTALADO [+]"
- sleep 3
- clear
- wget https://download.jetbrains.com/python/pycharm-professional-2024.1.4-aarch64.tar.gz
- tar -xvzf pycharm-professional-2024.1.4-aarch64.tar.gz
- if [ "$?" == 1 ];then
-  tar -xvzf 'pycharm-professional-2024.1.4-aarch64.tar.gz'
- fi
- if [ "$?" == 1 ];then
-  tar -xvzf pycharm-professional-2024.1.4-aarch64.tar.gz.1
- fi
- clear
- echo "INICIANDO O PYCHARM..."
- sleep 3
- echo "CERTIFIQUE-SE DE ESTAR NO AMBIEMTE GUI DO SEU LINUX"
- echo -n "$(pwd)/pycharm-2024.1.4/bin/pycharm.sh" > pycharm
- chmod 777 pycharm
- mv pycharm /bin/
- if [ "$?" == 1 ];then
-  pycharm-2024.1.4/bin/pycharm.sh
-  echo """ APÓS A INCIAÇÃO DO PYCHARM RECOMENDAMOS QUE VC DE UMA
- OLHADA NO REPOSITORIO E SSGUIR OS RESTOS DAS INSTRUÇÕES BASICAS.
- ~O CAMINHO CURTO NEM SEMPRE É O MAIS PRECISO, MAS O CAMINHO LONGO
- TRAZ MAIS EXPERIENCIAS!~
- https://github.com/Raposo67/python
- PARA ABRIR O PYCHARM USE O COMANDO pycharm"""
- else
-  pycharm-2024.1.4/bin/pycharm.sh
-  echo """ APÓS A INCIAÇÃO DO PYCHARM RECOMENDAMOS QUE VC DE UMA
- OLHADA NO REPOSITORIO E SSGUIR OS RESTOS DAS INSTRUÇÕES BASICAS.
- ~O CAMINHO CURTO NEM SEMPRE É O MAIS PRECISO, MAS O CAMINHO LONGO
- TRAZ MAIS EXPERIENCIAS!~
- https://github.com/Raposo67/python
- PARA ABRIR O PYCHARM USE O COMANDO `pycharm` """
- fi
- sleep 2
- echo """ APÓS A INCIAÇÃO DO PYCHARM RECOMENDAMOS QUE VC DE UMA
- OLHADA NO REPOSITORIO E SSGUIR OS RESTOS DAS INSTRUÇÕES BASICAS.
- ~O CAMINHO CURTO NEM SEMPRE É O MAIS PRECISO, MAS O CAMINHO LONGO
- TRAZ MAIS EXPERIENCIAS!~
- https://github.com/Raposo67/python
- PARA ABRIR O PYCHARM USE O COMANDO pycharm"""
-fi
-
+#########################################################
